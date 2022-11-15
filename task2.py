@@ -8,7 +8,7 @@
 # 1+2*3 => 7;
 # (1+2)*3 => 9;
 ####
-#### НЕТ АНАЛИЗА ДЕЛЕНИЯ НА НОЛЬ, РЕАЛИЗОВАН ВАРИАНТ С ОДНОЙ СКОБКОЙ
+####НЕТ АНАЛИЗА ДЕЛЕНИЯ НА НОЛЬ, ОГРАНИЧЕНИЯ ПО СКОБКАМ СНЯТЫ!
 # ------------------
 # метод выделения текста между скобками
 # ------------------
@@ -126,23 +126,6 @@ right = ''
 left = ''
 result = ''
 tmp = ''
-# if ')' in fla:
-#     scobka = parent(fla) # берем что внутри скобок
-#     tmp = scobka[0]
-
-# #убираем скобки и вставляем результат вычислений скобок в выражение
-#     result = proh(tmp)     #обработка внутри скобки
-
-#     # sk_r = scobka[2]
-#     tmp = fla[:scobka[1]]       # левая скобка -> scobka[1]
-#     tmp += result
-#     tmp += fla[scobka[2]+1:]    # правая скобка -> scobka[2]
-#     print(tmp)
-# else:
-#     tmp = fla
-#     print(tmp)
-# result = proh(tmp)     #обработка после скобки
-
 tmp_fl = fla
 while ')' in tmp_fl:
     scobka = parent(tmp_fl) # берем что внутри скобок
@@ -150,17 +133,11 @@ while ')' in tmp_fl:
 
 #убираем скобки и вставляем результат вычислений скобок в выражение
     result = proh(tmp)     #обработка внутри скобки
-
-    # sk_r = scobka[2]
     tmp = tmp_fl[:scobka[1]]       # левая скобка -> scobka[1]
     tmp += result
     tmp += tmp_fl[scobka[2]+1:]    # правая скобка -> scobka[2]
     tmp_fl = tmp
     print(tmp_fl)
-# else:
-#     tmp = fla
-#     print(tmp)
 
 result = proh(tmp_fl)
-
 print(result)
