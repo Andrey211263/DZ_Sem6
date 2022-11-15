@@ -13,8 +13,8 @@
 # метод выделения текста между скобками
 # ------------------
 def parent(text):
-    sk1 = 0
-    sk2 = 0
+    # sk1 = 0
+    # sk2 = 0
     if ')' in text:
         sk2 = text.index(')')
         i = sk2
@@ -44,7 +44,7 @@ def num_l(text, ch):
 # ------------------
 def num_r(text, ch):
     i = 0
-    end_text = len(text)
+    # end_text = len(text)
     num = ''
     if ch in text:
         i = text.index(ch)
@@ -119,26 +119,48 @@ def proh(re):
 
 # fla = '5+10-(25-163/2.5378+21+23*2+5*7)*8+3*4'
 # fla = '-5*2-10/(3-110+12/234-5*6.8745+10*255+8/4)*8+3*4-5+15.231*3362-23341/2316'
-fla = '(-100-8)/10+12-16*2-2'
+# fla = '(-100-8)/10+12-16*2-2'
+fla = '((1+2)-4+2)*(2+3*3)+((123-34/5)*4-6)'
 print(fla)
 right = ''
 left = ''
 result = ''
 tmp = ''
-if ')' in fla:
-    scobka = parent(fla) # берем что внутри скобок
+# if ')' in fla:
+#     scobka = parent(fla) # берем что внутри скобок
+#     tmp = scobka[0]
+
+# #убираем скобки и вставляем результат вычислений скобок в выражение
+#     result = proh(tmp)     #обработка внутри скобки
+
+#     # sk_r = scobka[2]
+#     tmp = fla[:scobka[1]]       # левая скобка -> scobka[1]
+#     tmp += result
+#     tmp += fla[scobka[2]+1:]    # правая скобка -> scobka[2]
+#     print(tmp)
+# else:
+#     tmp = fla
+#     print(tmp)
+# result = proh(tmp)     #обработка после скобки
+
+tmp_fl = fla
+while ')' in tmp_fl:
+    scobka = parent(tmp_fl) # берем что внутри скобок
     tmp = scobka[0]
 
 #убираем скобки и вставляем результат вычислений скобок в выражение
     result = proh(tmp)     #обработка внутри скобки
 
     # sk_r = scobka[2]
-    tmp = fla[:scobka[1]]       # левая скобка -> scobka[1]
+    tmp = tmp_fl[:scobka[1]]       # левая скобка -> scobka[1]
     tmp += result
-    tmp += fla[scobka[2]+1:]    # правая скобка -> scobka[2]
-    print(tmp)
-else:
-    tmp = fla
-    print(tmp)
-result = proh(tmp)     #обработка после скобки
+    tmp += tmp_fl[scobka[2]+1:]    # правая скобка -> scobka[2]
+    tmp_fl = tmp
+    print(tmp_fl)
+# else:
+#     tmp = fla
+#     print(tmp)
+
+result = proh(tmp_fl)
+
 print(result)
